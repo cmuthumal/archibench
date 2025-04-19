@@ -2,7 +2,6 @@
   <h2 class="ml-20">Architecture Workbench</h2>
 </div>
 
-
 <div class="content" role="main">
   <p>Enter your requirements</p>
   <textarea class="mb-10" [(ngModel)]="requirementStr" rows="10" cols="50"></textarea>
@@ -10,7 +9,6 @@
     <button *ngIf="!loading" class="btn mb-20" (click)="onSubmit()">Submit</button>
     <button *ngIf="loading" class="btn mb-20" (click)="onSubmit()">Loading...</button>
   </div>
-
 
   <p *ngIf="solutionSummary" class="mb-20">
     <strong>Summary:</strong> {{solutionSummary}}
@@ -34,7 +32,6 @@
     <strong>Justification:</strong> {{justification}}
   </p>
 
-  
   <div *ngIf="encodedDiagram">
     <p><strong>Architecture Diagram</strong></p>
     <img class="diagram-img" [src]="diagramUrl" alt="Mermaid Diagram" />
