@@ -3,37 +3,14 @@
 </div>
 
 <div class="content" role="main">
-  <p>Enter your requirements</p>
+  <p>How can I help?</p>
   <textarea class="mb-10" [(ngModel)]="requirementStr" rows="10" cols="50"></textarea>
   <div class="btn-div">
     <button *ngIf="!loading" class="btn mb-20" (click)="onSubmit()">Submit</button>
     <button *ngIf="loading" class="btn mb-20" (click)="onSubmit()">Loading...</button>
   </div>
 
-  <p *ngIf="solutionSummary" class="mb-20">
-    <strong>Summary:</strong> {{solutionSummary}}
+  <p *ngIf="answer" class="mb-20">
+    <strong>Answer:</strong> {{answer}}
   </p>
-  <p *ngIf="frontend" class="mb-20">
-    <strong>Frontend:</strong> {{frontend}}
-  </p>
-  <p *ngIf="backend" class="mb-20">
-    <strong>Backend:</strong> {{backend}}
-  </p>
-  <p *ngIf="database" class="mb-20">
-    <strong>Database:</strong> {{database}}
-  </p>
-  <p *ngIf="realtime" class="mb-20">
-    <strong>Realtime:</strong> {{realtime}}
-  </p>
-  <p *ngIf="reporting" class="mb-20">
-    <strong>Reporting:</strong> {{reporting}}
-  </p>
-  <p *ngIf="justification" class="mb-20">
-    <strong>Justification:</strong> {{justification}}
-  </p>
-
-  <div *ngIf="encodedDiagram">
-    <p><strong>Architecture Diagram</strong></p>
-    <img class="diagram-img" [src]="diagramUrl" alt="Mermaid Diagram" />
-  </div>
 </div>
