@@ -1,5 +1,5 @@
 <div class="toolbar" role="banner">
-  <h2 class="ml-20">Architecture Workbench</h2>
+  <h2 class="ml-20">Test Script Generator</h2>
 </div>
 
 <div class="content" role="main">
@@ -10,31 +10,48 @@
     <button *ngIf="loading" class="btn mb-20" (click)="onSubmit()">Loading...</button>
   </div>
 
-  <p *ngIf="solutionSummary" class="mb-20">
-    <strong>Summary:</strong> {{solutionSummary}}
-  </p>
-  <p *ngIf="frontend" class="mb-20">
-    <strong>Frontend:</strong> {{frontend}}
-  </p>
-  <p *ngIf="backend" class="mb-20">
-    <strong>Backend:</strong> {{backend}}
-  </p>
-  <p *ngIf="database" class="mb-20">
-    <strong>Database:</strong> {{database}}
-  </p>
-  <p *ngIf="realtime" class="mb-20">
-    <strong>Realtime:</strong> {{realtime}}
-  </p>
-  <p *ngIf="reporting" class="mb-20">
-    <strong>Reporting:</strong> {{reporting}}
-  </p>
-  <p *ngIf="justification" class="mb-20">
-    <strong>Justification:</strong> {{justification}}
-  </p>
- 
+  <div class="container mt-3" *ngIf="testData">
+    <!-- Model -->
+    <div class="card mb-3">
+      <div class="card-header bg-primary text-white">State Machine Model</div>
+      <div class="card-body">
+        <pre>{{ testData.model }}</pre>
+      </div>
+    </div>
 
-  <div *ngIf="encodedDiagram">
-    <p><strong>Architecture Diagram</strong></p>
-    <img class="diagram-img" [src]="diagramUrl" alt="Mermaid Diagram" />
+    <!-- Test Cases -->
+    <div class="card mb-3">
+      <div class="card-header bg-success text-white">Test Cases</div>
+      <div class="card-body">
+        <div *ngFor="let tc of testData.cases" class="mb-4 border-bottom pb-2">
+          <h5>{{ tc.id }} - {{ tc.title }}</h5>
+          <p><strong>Type:</strong> {{ tc.type }}</p>
+          <p><strong>Description:</strong> {{ tc.description }}</p>
+          <p><strong>Preconditions:</strong> {{ tc.preconditions }}</p>
+          <p><strong>Expected Result:</strong> {{ tc.expectedResult }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Test Scripts -->
+    <div class="card mb-3">
+      <div class="card-header bg-warning text-dark">Automation Scripts</div>
+      <div class="card-body">
+        <div *ngFor="let sc of testData.scripts" class="mb-4 border-bottom pb-2">
+          <h5>{{ sc.id }} - {{ sc.fileName }} ({{ sc.framework }})</h5>
+          <pre>{{ sc.content }}</pre>
+          <p><strong>Notes:</strong> {{ sc.notes }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Metadata -->
+    <div class="card mb-3">
+      <div class="card-header bg-info text-white">Metadata</div>
+      <div class="card-body">
+        <p><strong>Confidence:</strong> {{ testData.metadata.confidence }}</p>
+        <p><strong>Assumptions:</strong> {{ testData.metadata.assumptions }}</p>
+      </div>
+    </div>
   </div>
 </div>
