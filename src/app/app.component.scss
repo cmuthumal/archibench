@@ -63,6 +63,12 @@ p {
   flex-direction: column;
 }
 
+.input-area {
+  textarea {
+    width: 100%;
+  }
+}
+
 .btn-div {
   text-align: right;
 }
@@ -89,6 +95,27 @@ p {
 
 .diagram-img {
   width: fit-content;
+}
+
+.chat-area {
+  height: 65vh;
+  overflow-y: scroll;
+}
+
+.bubble {
+  width: fit-content;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.me-bubble {
+  color: white;
+  background-color: #1976d2;
+}
+
+.chat-bubble {
+  background-color: lightgreen;
 }
 
 @media screen and (max-width: 575px) {

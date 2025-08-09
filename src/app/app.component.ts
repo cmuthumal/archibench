@@ -13,12 +13,23 @@ export class AppComponent {
   mermaidAiInputStr: string = '';
   encodedDiagram: string = '';
   loading: boolean = false;
+  chat = [
+    {
+      speaker: '',
+      msg: '',
+    },
+  ];
 
   answer: string = '';
 
   constructor(public dataService: DataService) {}
 
   onSubmit() {
+    this.chat.push({
+      speaker: 'me',
+      msg: this.requirementStr,
+    });
+
     if (this.requirementStr.length > 10) {
       this.loading = true;
 
@@ -39,8 +50,19 @@ export class AppComponent {
       };
 
       this.dataService.getArchitectureSuggestion(body).subscribe((res: any) => {
-        if (res && res.choices && res.choices[0] && res.choices[0].message && res.choices[0].message.content) {
+        if (
+          res &&
+          res.choices &&
+          res.choices[0] &&
+          res.choices[0].message &&
+          res.choices[0].message.content
+        ) {
           this.answer = res.choices[0].message.content;
+          this.chat.push({
+            speaker: 'chat',
+            msg: this.answer,
+          });
+          this.requirementStr = '';
           this.loading = false;
         } else {
           this.answer = 'Something went wrong. Please try again later.';

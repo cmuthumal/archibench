@@ -1,16 +1,22 @@
 <div class="toolbar" role="banner">
-  <h2 class="ml-20">Architecture Workbench</h2>
+  <h2 class="ml-20">Assistant</h2>
 </div>
 
 <div class="content" role="main">
-  <p>How can I help?</p>
-  <textarea class="mb-10" [(ngModel)]="requirementStr" rows="10" cols="50"></textarea>
-  <div class="btn-div">
-    <button *ngIf="!loading" class="btn mb-20" (click)="onSubmit()">Submit</button>
-    <button *ngIf="loading" class="btn mb-20" (click)="onSubmit()">Loading...</button>
+  <div class="chat-area">
+    <div *ngFor="let chatItem of chat">
+      <p class="bubble" [ngClass]="{'chat-bubble': chatItem.speaker=='chat', 'me-bubble': chatItem.speaker=='me'}">
+        {{chatItem.msg}}
+      </p>
+    </div>
   </div>
 
-  <p *ngIf="answer" class="mb-20">
-    <strong>Answer:</strong> {{answer}}
-  </p>
+  <div class="input-area">
+    <p>How can I help?</p>
+    <textarea name="input-text-area" class="mb-10" [(ngModel)]="requirementStr" rows="10" cols="50"></textarea>
+    <div class="btn-div">
+      <button *ngIf="!loading" class="btn mb-20" (click)="onSubmit()">Submit</button>
+      <button *ngIf="loading" class="btn mb-20" (click)="onSubmit()">Loading...</button>
+    </div>
+  </div>
 </div>
